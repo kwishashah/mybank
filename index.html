@@ -3,16 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Bank</title>
+    <title>Banking System</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-    <h1 class="header">My Bank</h1>
-    <button onclick="toggle('dark')">Dark</button>
-    <button onclick="toggle('light')">Light</button>
-    <hr />
-    <script src="index.js"></script>
-    <hr />
-    <p>@Copyright 2025. All rights reserved.</p>
+<body class="light-mode">
+    <!-- Theme Toggle Button -->
+    <button id="theme-toggle" class="theme-toggle" onclick="toggleTheme()">Toggle Theme</button>
+    
+    <!-- Welcome Page -->
+    <div id="welcome-page" class="welcome-container">
+        <img src="assets/logo.jpg" alt="Bank Logo" class="bank-logo">
+        <h1>Welcome to My Bank</h1>
+        <button class="auth-btn" onclick="navigateTo('login-page')">Login</button>
+        <button class="auth-btn" onclick="navigateTo('signup-page')">Create Account</button>
+    </div>
+
+    <!-- Login Page -->
+    <div id="login-page" class="auth-container center-aligned" style="display: none;">
+        <h2>Login</h2>
+        <input type="text" id="login-username" placeholder="Username">
+        <input type="password" id="login-password" placeholder="Password">
+        <button onclick="login()">Login</button>
+        <button onclick="navigateTo('welcome-page')">Back</button>
+    </div>
+
+    <!-- Signup Page -->
+    <div id="signup-page" class="auth-container center-aligned" style="display: none;">
+        <h2>Create Account</h2>
+        <input type="text" id="full-name" placeholder="Full Name" required>
+        <input type="email" id="signup-email" placeholder="Email" required>
+        <input type="text" id="signup-username" placeholder="Username" required>
+        <input type="password" id="signup-password" placeholder="Password" required>
+        <input type="date" id="signup-dob" required>
+        <button onclick="signup()">Create Account</button>
+        <button onclick="navigateTo('welcome-page')">Back</button>
+    </div>
+
+    <!-- Banking System (After Login) -->
+    <div class="container center-aligned" id="banking-system" style="display: none;">
+        <header>
+            <img src="assets/logo.jpg" alt="Bank Logo" class="bank-logo-header">
+            <h1>My Bank</h1>
+        </header>
+
+        <div class="account-info">
+            <h2>Account Balance</h2>
+            <p id="balance">$0.00</p>
+        </div>
+
+        <div class="transactions">
+            <h2>Make a Transaction</h2>
+            <input type="number" id="amount" placeholder="Enter Amount">
+            <div class="buttons">
+                <button class="deposit-btn" onclick="deposit()">Deposit</button>
+                <button class="withdraw-btn" onclick="withdraw()">Withdraw</button>
+            </div>
+        </div>
+
+        <!-- Transaction History -->
+        <div class="transaction-history">
+            <h2>Transaction History</h2>
+            <ul id="transaction-history-list"></ul>
+        </div>
+
+        <!-- Go Back Button -->
+        <button class="back-btn" onclick="navigateTo('login-page')">Go Back</button>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
